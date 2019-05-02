@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/layout :: head(title='Register')"></head>
+    <body>
+        <main>
+            <section class="container">
+                <header th:replace="fragments/layout :: header(text='Register a new account')"></header>
+                <div class="col-md-4 col-md-offset-4">
+                    <form th:action="@{/register}" method="POST">
+
+                        <div class="form-group">
+                            
+                            <label for="name">Username</label>
+                            <input type="text" class="form-control" name="username"/>
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" name="name"/>
+                            <label for="name">Password</label>
+                            <input type="text" class="form-control" name="password"/>
+                            <label for="name">Public Name (visible to everyone, not just your friends)</label>
+                            <input type="text" class="form-control" name="publicName"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            <br/>
+                <div class="col-md-4 col-md-offset-4">
+                    <a th:href="@{/login}"class="btn btn-primary">I already have an account</a>
+                </div>
+                
+            </section>
+        </main>
+    </body>
+</html>
