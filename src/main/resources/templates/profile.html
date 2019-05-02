@@ -3,7 +3,10 @@
     <head th:replace="fragments/layout :: head(title='Facebook')"></head>
     <body>
         <nav th:replace="fragments/layout :: navbar"></nav>
-        <header th:replace="fragments/layout :: header(text=${'Hello ' + person.name})"></header>
-        <div>TODO write content</div>
+        
+        <div class="container container-fluid">
+            <header th:replace="fragments/layout :: header(text=${'Hello ' + person.name})"></header>
+            TODO write content
+        </div>
     </body>
 </html>

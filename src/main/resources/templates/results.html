@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/layout :: head(title='Search results')"></head>
+    <body>
+        <nav th:replace="fragments/layout :: navbar"></nav>
+        <main>
+            
+            <section class="container container-fluid">
+                <header th:replace="fragments/layout :: header(text='Search results')"></header>
+                <div class="container container-fluid">
+                    <ul>
+                    <li th:each="henkilo: ${results}">
+                        <span th:text="${henkilo.publicName}">Julkinen nimi</span>
+                    </li>
+                </ul>
+                </div>
+            </section>
+        </main>      
+    </body>
+</html>
