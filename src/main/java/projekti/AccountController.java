@@ -21,10 +21,8 @@ public class AccountController {
     AccountRepository accountRepository;
 
     @Autowired
-    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-    
-  
-    
+    PasswordEncoder passwordEncoder;
+        
     @GetMapping("/register")
     public String getRegisterPage() {
         return "register";
@@ -36,6 +34,7 @@ public class AccountController {
         if (accountRepository.findByUsername(username) != null) {
             return "redirect:/register";
         }
+        passwordEncoder = new BCryptPasswordEncoder();
         Account a = new Account(username, name, passwordEncoder.encode(password), publicName);
         accountRepository.save(a);
         return "redirect:/login";   
