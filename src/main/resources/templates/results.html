@@ -11,6 +11,7 @@
                     <ul>
                     <li th:each="henkilo: ${results}">
                         <span th:text="${henkilo.publicName}">Julkinen nimi</span>
+                        <button class="btn btn-success">Add as friend</button>
                     </li>
                 </ul>
                 </div>
