@@ -39,7 +39,8 @@ public class AccountController {
             return "redirect:/register";
         }
         passwordEncoder = new BCryptPasswordEncoder();
-        Account a = new Account(username, name, passwordEncoder.encode(password), publicName);
+        Account a = new Account(username, name, passwordEncoder.encode(password), publicName, new ArrayList<>(), new ArrayList<>(),
+            new ArrayList<>(), new ArrayList<>());
         accountRepository.save(a);
         return "redirect:/login";   
     }
@@ -66,8 +67,10 @@ public class AccountController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         Account myAccount = accountRepository.findByUsername(username);
-        List<Account>lista = accountRepository.findAll().stream().filter(a -> a.getUsername() != myAccount.getUsername()).collect(Collectors.toList());
-        System.out.println("LISTA " + lista.toString());
+        List<Account>lista = accountRepository.findAll()
+                .stream()
+                .filter(a -> (!a.getUsername().equals( myAccount.getUsername())))
+                .collect(Collectors.toList());
         List<Account>tulokset= new ArrayList<>();
         if (lista.size()>0) {
             for (int i=0; i<lista.size(); i++) {
@@ -88,4 +91,5 @@ public class AccountController {
         this.searchString=searchString;
         return "redirect:/search";      
     }
+    
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/layout :: head(title='Friend Requests')"></head>
+    <body>
+        <nav th:replace="fragments/layout :: navbar"></nav>
+
+        <main class="container container-fluid">
+            <header th:replace="fragments/layout :: header(text='Friend Requests')"></header>
+            <div>
+                <ul>
+                    <li th:each="request : ${requests}">
+                        <span th:text="${request.senderPublicname}">Name</span>
+                        <span th:text="${request.time}">Time</span>
+                        <form th:action="@{/requests/{id}(id=${request.id})}" th:method="POST">
+                            <input type="submit" class="btn btn-success" name="accept" value="Accept request"/>                           
+                        </form>
+                         <form th:action="@{/requests/reject/{id}(id=${request.id})}" th:method="POST">
+                            <input type="submit" class="btn btn-danger" name="accept" value="Reject request"/>                           
+                        </form>
+                        <br/>
+                    </li>
+                </ul>
+            </div>
+        </main>
+        <section th:replace="fragments/layout :: scripts"></section>
+    </body>
+</html>

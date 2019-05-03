@@ -6,20 +6,18 @@
         <main>
             
             <section class="container container-fluid">
-                <header th:replace="fragments/layout :: header(text='Search results')"></header>
+                <header th:replace="fragments/layout :: header(text='My friends')"></header>
                 <div class="container container-fluid">
                     <ul>
-                    <li th:each="person : ${results}">
-                        <span th:text="${person.publicName}">Julkinen nimi</span>
-                        <form th:action="@{/addFriend/{username}(username=${person.username})}" th:method="POST">
-                            <input type="submit" class="btn btn-success" value="Friend request"/>
-                        </form><br/>
-                        
+                    <li th:each="henkilo: ${friends}">
+                        <span th:text="${henkilo.publicName}">Julkinen nimi</span>
+                        <button class="btn btn-success">View</button>
                     </li>
                 </ul>
                 </div>
             </section>
-        </main>   
+        </main>
         <section th:replace="fragments/layout :: scripts"></section>
     </body>
 </html>
+

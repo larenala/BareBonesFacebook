@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/layout :: head(title='Images')"></head>
+    <body>
+        <nav th:replace="fragments/layout :: navbar"></nav>
+
+        <main class="container container-fluid">
+            <div>
+                <!--<ul>
+                    <li th:each="image : ${images}">
+                        <img th:src="@{/images/{id}/content(id=${image.id})}"/>
+                    </li>
+                </ul>-->
+            </div>
+
+            <h2>Add new content</h2>
+
+            <form method="POST" th:action="@{/images}" enctype="multipart/form-data">
+                <input type="file" name="file" id="file"/>
+                <input type="submit" value="Add!"/>
+            </form>
+        </main>
+        <section th:replace="fragments/layout :: scripts"></section>
+        </body>
+</html>
