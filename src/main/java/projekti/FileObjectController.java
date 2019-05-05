@@ -30,12 +30,17 @@ public class FileObjectController {
         String username = auth.getName();
         Account account = accountRepository.findByUsername(username);
         List<FileObject>images = account.getImages();
+        model.addAttribute("account", account);
         model.addAttribute("images", images);
+        model.addAttribute("currentUser", account);
         return "images";
     }
     
     @PostMapping("/images")
     public String postImage(@RequestParam("file") MultipartFile file, @RequestParam String description) throws IOException {
+        if (fileObjectRepository.findAll().size() >9) {
+            return "redirect:/images";
+        }
         FileObject fo = new FileObject();
         fo.setContent(file.getBytes());
         fo.setDescription(description);
@@ -49,6 +54,22 @@ public class FileObjectController {
         fileObjectRepository.save(fo);
         return "redirect:/images";
     }
+    
+    @PostMapping("likeImage/{id}/{username}")
+    public String likeImage(@PathVariable Long id) {
+        FileObject fo= fileObjectRepository.getOne(id);
+        fo.setLikes(fo.getLikes()+1);
+        fileObjectRepository.save(fo);
+        return "redirect:/images";
+    }
+    
+    @PostMapping("deleteImage/{id}")
+    public String deleteImage(@PathVariable Long id) {
+        FileObject fo = fileObjectRepository.getOne(id);
+        fileObjectRepository.delete(fo);
+        return "redirect:/images";
+    }
+            
     
     @GetMapping("images/{id}/content")
     @ResponseBody

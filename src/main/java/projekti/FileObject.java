@@ -24,4 +24,5 @@ public class FileObject extends AbstractPersistable <Long> {
     private Account account;
     private String description;   
     private boolean profileImg=false;
+    private int likes =0;
 }

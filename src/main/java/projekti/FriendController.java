@@ -30,6 +30,9 @@ public class FriendController {
     @Autowired
     FriendRepository friendRepository;
     
+    @Autowired
+    FileObjectRepository fileObjectRepository;
+    
     @PostMapping("/addFriend/{username}")
     public String sendFriendRequest(@PathVariable String username) {
        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -74,6 +77,19 @@ public class FriendController {
         Account account = accountRepository.findByUsername(username);
         model.addAttribute("account", account);
         return "profile";
+    }
+    
+    @GetMapping("/images/{username}")
+    public String showFriendsImages(Model model, @PathVariable String username) {
+        Account account = accountRepository.findByUsername(username);
+        List<FileObject>images = account.getImages();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String currentUsername = auth.getName();
+        Account currentAccount = accountRepository.findByUsername(currentUsername);
+        model.addAttribute("account", account);
+        model.addAttribute("images", images);
+        model.addAttribute("currentUser", currentAccount);
+        return "images";
     }
     
     @PostMapping("/viewFriend/{username}")
