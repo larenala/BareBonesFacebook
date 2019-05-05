@@ -2,6 +2,7 @@
 package projekti;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,11 @@ public class FriendController {
         }
                        
         List<FriendRequest>newList = friend.getFriendRequests();
-        FriendRequest newRequest = new FriendRequest(name, myAccount.getPublicName(), LocalDateTime.now(), friend);
+        LocalDateTime time = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedTime = time.format(formatter);
+        
+        FriendRequest newRequest = new FriendRequest(name, myAccount.getPublicName(), formattedTime, friend);
         newList.add(newRequest);
         friend.setFriendRequests(newList);
         accountRepository.save(friend);
@@ -62,6 +67,18 @@ public class FriendController {
         Account myAccount = accountRepository.findByUsername(username);       
         model.addAttribute("friends", myAccount.getFriends());
         return "friends";
+    }
+    
+    @GetMapping("/profile/{username}")
+    public String showFriendsProfile(Model model, @PathVariable String username) {
+        Account account = accountRepository.findByUsername(username);
+        model.addAttribute("account", account);
+        return "profile";
+    }
+    
+    @PostMapping("/viewFriend/{username}")
+    public String viewFriendsProfile() {
+        return "redirect:/profile/{username}";
     }
     
     @GetMapping("/requests")
@@ -100,5 +117,6 @@ public class FriendController {
         friendRequestRepository.delete(request);
         return "redirect:/requests";
     }
+    
     
 }

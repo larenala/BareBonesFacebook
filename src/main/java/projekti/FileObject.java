@@ -1,7 +1,9 @@
 
 package projekti;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -16,8 +18,10 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Data
 public class FileObject extends AbstractPersistable <Long> {
     @Lob
+    @Basic(fetch = FetchType.LAZY)
     private byte[] content;
     @ManyToOne
     private Account account;
-    private int likes;   
+    private String description;   
+    private boolean profileImg=false;
 }

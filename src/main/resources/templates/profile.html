@@ -5,8 +5,9 @@
         <nav th:replace="fragments/layout :: navbar"></nav>
         
         <div class="container container-fluid">
-            <header th:replace="fragments/layout :: header(text=${'Hello ' + person.name})"></header>
-            TODO write content
+            <header th:replace="fragments/layout :: header(text=${account.name})"></header>
+            <br/>
+            <i class="fas fa-user" style="font-size: 300px; color:grey;"></i>
         </div>
         <section th:replace="fragments/layout :: scripts"></section>
     </body>

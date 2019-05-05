@@ -16,7 +16,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 public class FriendRequest extends AbstractPersistable<Long>{
     private String senderUsername;
     private String senderPublicname;
-    private LocalDateTime time;
+    private String time;
     @ManyToOne
     private Account account;
 }

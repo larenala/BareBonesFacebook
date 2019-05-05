@@ -50,9 +50,11 @@ public class AccountController {
     public String showProfile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
-        model.addAttribute("person", accountRepository.findByUsername(username));
+        model.addAttribute("account", accountRepository.findByUsername(username));
         return "profile";
     }
+    
+ 
     
     @GetMapping("/index")
     public String getIndex(Model model) {

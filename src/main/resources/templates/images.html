@@ -5,20 +5,26 @@
         <nav th:replace="fragments/layout :: navbar"></nav>
 
         <main class="container container-fluid">
-            <div>
-                <!--<ul>
-                    <li th:each="image : ${images}">
-                        <img th:src="@{/images/{id}/content(id=${image.id})}"/>
-                    </li>
-                </ul>-->
-            </div>
-
-            <h2>Add new content</h2>
+            
+            <h2>Add new image</h2>
 
             <form method="POST" th:action="@{/images}" enctype="multipart/form-data">
                 <input type="file" name="file" id="file"/>
+                <label>Description:</label>
+                <input type="text" name="description" />
                 <input type="submit" value="Add!"/>
             </form>
+            
+            <div>
+                <ul>
+                    <li th:each="image : ${images}">
+                        <div th:text="${image.description}">Description of image</div>
+                        <img th:src="@{/images/{id}/content(id=${image.id})}" width="30%" alt="${image.description}"/>
+                    </li>
+                </ul>
+            </div>
+
+            
         </main>
         <section th:replace="fragments/layout :: scripts"></section>
         </body>
