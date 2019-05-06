@@ -62,11 +62,17 @@ public class FileObjectController {
         FileObject fo = new FileObject();
         fo.setContent(file.getBytes());
         fo.setDescription(description);
-        
+       
         images.add(fo);
         fo.setAccount(account);
+        account.setImages(images);
         accountRepository.save(account);
-        fileObjectRepository.save(fo);
+        try {
+            fileObjectRepository.save(fo);
+        } catch(Exception e) {
+            System.out.println("Could not save file.");
+        }
+        
         return "redirect:/images";
     }
     
