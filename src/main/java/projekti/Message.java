@@ -14,11 +14,11 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Message extends AbstractPersistable<Long>{
-    private String sender;
-    private String receiver;    
+    private String sender; 
     private LocalDateTime time;
     private String message;
     private int likes;    
     @ManyToOne
     private Account account;
+    
 }

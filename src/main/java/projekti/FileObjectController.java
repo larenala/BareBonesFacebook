@@ -36,18 +36,33 @@ public class FileObjectController {
         return "images";
     }
     
+    @GetMapping("/images/{username}")
+    public String showFriendsImages(Model model, @PathVariable String username) {
+        Account account = accountRepository.findByUsername(username);
+        List<FileObject>images = account.getImages();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String currentUsername = auth.getName();
+        Account currentAccount = accountRepository.findByUsername(currentUsername);
+        model.addAttribute("account", account);
+        model.addAttribute("images", images);
+        model.addAttribute("currentUser", currentAccount);
+        return "images";
+    }
+    
+    
     @PostMapping("/images")
     public String postImage(@RequestParam("file") MultipartFile file, @RequestParam String description) throws IOException {
-        if (fileObjectRepository.findAll().size() >9) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        Account account = accountRepository.findByUsername(username);
+        List<FileObject>images = account.getImages();
+        if (images.size() > 9) {
             return "redirect:/images";
         }
         FileObject fo = new FileObject();
         fo.setContent(file.getBytes());
         fo.setDescription(description);
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-        Account account = accountRepository.findByUsername(username);
-        List<FileObject>images = account.getImages();
+        
         images.add(fo);
         fo.setAccount(account);
         accountRepository.save(account);
@@ -57,19 +72,20 @@ public class FileObjectController {
     
     @PostMapping("likeImage/{id}/{username}")
     public String likeImage(@PathVariable Long id) {
-        FileObject fo= fileObjectRepository.getOne(id);
+        FileObject fo= fileObjectRepository.getOne(id);        
         fo.setLikes(fo.getLikes()+1);
-        fileObjectRepository.save(fo);
-        return "redirect:/images";
+        fileObjectRepository.save(fo);   
+        String recipientsUsername = fo.getAccount().getUsername();
+        return "redirect:/images/" + recipientsUsername;
     }
+
     
     @PostMapping("deleteImage/{id}")
     public String deleteImage(@PathVariable Long id) {
         FileObject fo = fileObjectRepository.getOne(id);
         fileObjectRepository.delete(fo);
         return "redirect:/images";
-    }
-            
+    }           
     
     @GetMapping("images/{id}/content")
     @ResponseBody

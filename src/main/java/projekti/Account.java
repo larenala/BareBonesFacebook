@@ -29,6 +29,7 @@ public class Account extends AbstractPersistable<Long>{
     private List<Message>messages;
     
     @OneToMany(mappedBy="account")
-    private List<FriendRequest>friendRequests;
+    private List<FriendRequest>friendRequests;    
+    
 }
 

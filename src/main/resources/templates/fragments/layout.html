@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
         <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
     </head>
     <body>
         <header th:fragment="header(text)">
@@ -30,22 +31,11 @@
                   <a class="nav-link" th:href="@{/images}">Images</a>
                 </li> 
                 <li class="nav-item">
-                  <a class="nav-link" th:href="@{/profile}">Profile</a>
-                </li>
-                <li class="nav-item">
                   <a class="nav-link" th:href="@{/requests}">Friend requests</a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    More
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Edit profile</a>
-                    <a class="dropdown-item" href="#">Edit friends</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" th:href="@{logout}">Log out</a>
-                  </div>
-                </li>
+                <li class="nav-item">
+                  <a class="nav-link" th:href="@{logout}">Log out</a>
+                </li>             
                 
               </ul>
               <form class="form-inline my-2 my-lg-0" th:action="@{/search}" method="POST">

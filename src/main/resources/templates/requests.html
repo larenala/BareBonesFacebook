@@ -5,7 +5,8 @@
         <nav th:replace="fragments/layout :: navbar"></nav>
 
         <main class="container container-fluid">
-            <header th:replace="fragments/layout :: header(text='Friend Requests')"></header>
+            <header th:replace="fragments/layout :: header(text='New Friend Requests')"></header>
+            
             <div>
                 <ul>
                     <li th:each="request : ${requests}">

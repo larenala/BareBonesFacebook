@@ -1,19 +1,37 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="fragments/layout :: head(title='Facebook')"></head>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/security/tags">
+
+    <head th:replace="fragments/layout :: head(title='My Profile')"></head>
     <body>
         <nav th:replace="fragments/layout :: navbar"></nav>
         <section class="container container-fluid">
             
-            <header th:replace="fragments/layout :: header(text=${'Hello ' + name})"></header>
+            <header th:replace="fragments/layout :: header(text=${account.name})"></header>
             <div class="container container-fluid">
                 <div class="row">
                     <div class="col-4">
-                        <p th:text="${name}"></p><br/>
-                        <img src="" alt=""/>
+                        <p th:text="${account.publicName}"></p><br/>
+                        <i class="fas fa-user"></i><br/>
+                        <a th:href="@{/images/{username} (username=${account.username})}"class="btn btn-primary">View my album</a>
                     </div>
                     <div class="col-8">
-                        Uusi päivitys
+                        <form th:action="@{/messages/{username} (username=${account.username})}" method="POST">
+                            <label>Send a message</label>
+                            <input type='textfield' name='message'/>
+                            <input type="submit" value="Send"/>
+                        </form>
+                        
+                        <ul>
+                            <li th:each="message : ${messages}">
+                                <span th:text="${message.sender}"></span>
+                                <span th:text="${message.time}"></span><br/>
+                                <span th:text="${message.message}"></span>
+                                <form th:action="@{/likeMessage/{id}/{username}(id=${message.id}, username=${currentUser.username})}" th:method="POST">
+                                    <input type="submit" class="btn btn-success" value="Like"/>
+                                    <span th:text="${message.likes}"></span><i class="fas fa-heart"></i><br/>                               
+                                </form>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
