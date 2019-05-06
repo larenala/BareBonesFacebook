@@ -17,12 +17,12 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @AllArgsConstructor
 @Data
 public class FileObject extends AbstractPersistable <Long> {
-    @Lob
+
+    @Lob 
     @Basic(fetch = FetchType.LAZY)
     private byte[] content;
     @ManyToOne
     private Account account;
     private String description;   
-    private boolean profileImg=false;
     private int likes =0;
 }
