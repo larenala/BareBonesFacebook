@@ -18,8 +18,6 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Data
 public class FileObject extends AbstractPersistable <Long> {
 
-    @Lob 
-    @Basic(fetch = FetchType.LAZY)
     private byte[] content;
     @ManyToOne
     private Account account;
