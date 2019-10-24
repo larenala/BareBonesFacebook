@@ -5,16 +5,21 @@
 Sovellus on [livenä Herokussa](https://polar-coast-42753.herokuapp.com "Link to App")
 
 Toimintaa voi kokeilla tunnuksilla 
+***
 
 Username: testi
 
 Salasana: testi
+
+***
 
 Ja kaverin tunnukset:
 
 Username: kaveri
 
 Salasana: kaveri
+
+***
 
 Voit myös luoda omat tunnukset.
 
@@ -41,11 +46,11 @@ voi poistaa tarpeen mukaan.
 
 Useampia ominaisuuksia jäi toteuttamatta ajanpuutteen vuoksi. 
 
-Kommentointi
-Sama käyttäjä ei saa lisätä useampaa tykkäystä
-Viestien järjestys saapumisjärjestyksessä ja paginointi
-Profiilikuvan määrittely
-Ajan formatointi viesteihin 
-Ulkoasun tyylittely ylipäätään
-Syötteiden validointi
-Testit
+- Kommentointi
+- Sama käyttäjä ei saa lisätä useampaa tykkäystä
+- Viestien järjestys saapumisjärjestyksessä ja paginointi
+- Profiilikuvan määrittely
+- Ajan formatointi viesteihin 
+- Ulkoasun tyylittely ylipäätään
+- Syötteiden validointi
+- Testit
