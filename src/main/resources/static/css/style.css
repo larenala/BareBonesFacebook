@@ -1,12 +1,22 @@
-footer {
-    background-color: lightgray;
-    min-height: 50px;
+.btn-pink {
+    background: #ffcccc;
+}
+.col {
+  flex-basis: 500px;
+  flex-grow: 1;
+  margin: 10px;
 }
 
-li {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+.divider {
+    height: 1px;
+    width: 100%;
+    background: rgba(0, 0, 19, 0.1);
+}
+
+footer {
+    background-color: green;
+    min-height: 3em;
+    color: white;
 }
 
 .fa-heart {
@@ -22,17 +32,39 @@ li {
     padding: 10px;
 }
 
-.image {
-    width: 50%;
-}
-
 .flex-grid {
   display: flex;
   flex-wrap: wrap;
 }
 
-.col {
-  flex-basis: 500px;
-  flex-grow: 1;
-  margin: 10px;
+.form-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.image {
+    width: 50%;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.message-input {
+    flex-grow: 2;
+}
+
+.messages-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.message-time {
+    font-size: 0.8em;
+}
+
+.sender-name {
+    font-weight: bold;
+    flex-grow: 2;
 }
